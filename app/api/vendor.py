@@ -26,7 +26,8 @@ def get_distance_to_vendor():
 
     distance = Distance.get_distance_between_points_in_km(user_lat, user_lng, vendor_lat, vendor_lng)
     payload = {
-        "distance": distance
+        "distance": distance,
+        "units": "km"
     }
 
     return Response(json_util.dumps(payload), status=200, mimetype="application/json")
