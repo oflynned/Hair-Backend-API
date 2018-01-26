@@ -19,3 +19,14 @@ class Distance:
 
         distance = r * c
         return round(distance, 2)
+
+    @staticmethod
+    def convert_km_to_miles(km):
+        return round(km * 0.621371, 2)
+
+    @staticmethod
+    def get_requested_distance(distance_in_km, requested_units):
+        if requested_units == "mi":
+            return Distance.convert_km_to_miles(distance_in_km)
+
+        return distance_in_km
