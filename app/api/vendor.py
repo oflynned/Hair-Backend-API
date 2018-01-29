@@ -12,7 +12,27 @@ vendor_endpoint = Blueprint("vendor", __name__)
 
 @vendor_endpoint.route("/", methods=["GET"])
 def get_vendor_data():
+    units = str(request.args.get("units")).lower()
+    user_lat = request.args.get("user_lat")
+    user_lng = request.args.get("user_lng")
+    vendor_lat = request.args.get("vendor_lat")
+    vendor_lng = request.args.get("vendor_lng")
+
     vendor_data = RetrieveVendorMetaData.get_vendor_data()
+
+    if units is None:
+        raise AttributeNotPresent("Null units", 400)
+
+    if user_lat is None or user_lng is None:
+        raise AttributeNotPresent("User location is null", 400)
+
+    if vendor_lat is None or vendor_lng is None:
+        raise AttributeNotPresent("Vendor location is null", 400)
+
+    for vendor in vendor_data:
+        distance_in_km = Distance.get_distance_between_points_in_km(user_lat, user_lng, vendor_lat, vendor_lng)
+        distance = Distance.get_requested_distance(distance_in_km, units)
+        vendor["distance"] = distance
 
     return Response(json_util.dumps(vendor_data), status=200, mimetype="application/json")
 

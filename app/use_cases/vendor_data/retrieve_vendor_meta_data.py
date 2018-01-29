@@ -26,11 +26,10 @@ class RetrieveVendorMetaData:
                     "sunday": {"opening": "9:00", "closing": "18:00"},
                 },
                 "prices": {
-                    "Wet Cut": 15,
-                    "Dry Cut": 10,
-                    "Beard Trim": 7,
-                    "Student Deal": 8,
-                    "Children": 7
+                    "Dry Cut": {"description": "Dry cut with scissors", "cost": 10},
+                    "Wet Cut": {"description": "Haircut with a pre-rinse and clean", "cost": 15},
+                    "Beard Trim": {"description": "Trimmed to your style with beard trimmer and razor", "cost": 7},
+                    "Shave": {"description": "Turkish blade shave", "cost": 12},
                 }
             },
             {
@@ -57,10 +56,10 @@ class RetrieveVendorMetaData:
                     "sunday": {"opening": "9:00", "closing": "18:00"},
                 },
                 "prices": {
-                    "Dry Cut": 10,
-                    "Wet Cut": 15,
-                    "Beard Trim": 6,
-                    "Shave": 10.50
+                    "Dry Cut": {"description": "Dry cut with scissors", "cost": 10},
+                    "Wet Cut": {"description": "Haircut with a pre-rinse and clean", "cost": 15},
+                    "Beard Trim": {"description": "Trimmed to your style with beard trimmer and razor", "cost": 7},
+                    "Shave": {"description": "Turkish blade shave", "cost": 12},
                 }
             },
             {
@@ -87,11 +86,10 @@ class RetrieveVendorMetaData:
                     "sunday": {"opening": "9:00", "closing": "18:00"},
                 },
                 "prices": {
-                    "Wet Cut": 15,
-                    "Dry Cut": 10,
-                    "Beard Trim": 7,
-                    "Student Deal": 8,
-                    "Children": 7
+                    "Dry Cut": {"description": "Dry cut with scissors", "cost": 10},
+                    "Wet Cut": {"description": "Haircut with a pre-rinse and clean", "cost": 15},
+                    "Beard Trim": {"description": "Trimmed to your style with beard trimmer and razor", "cost": 7},
+                    "Shave": {"description": "Turkish blade shave", "cost": 12},
                 }
             },
             {
@@ -118,11 +116,10 @@ class RetrieveVendorMetaData:
                     "sunday": {"opening": "9:00", "closing": "18:00"},
                 },
                 "prices": {
-                    "Wet Cut": 15,
-                    "Dry Cut": 10,
-                    "Beard Trim": 7,
-                    "Student Deal": 8,
-                    "Children": 7
+                    "Dry Cut": {"description": "Dry cut with scissors", "cost": 10},
+                    "Wet Cut": {"description": "Haircut with a pre-rinse and clean", "cost": 15},
+                    "Beard Trim": {"description": "Trimmed to your style with beard trimmer and razor", "cost": 7},
+                    "Shave": {"description": "Turkish blade shave", "cost": 12},
                 }
             }
         ]
