@@ -12,13 +12,17 @@ vendor_endpoint = Blueprint("vendor", __name__)
 
 @vendor_endpoint.route("/", methods=["GET"])
 def get_vendor_data():
+    vendor_data = RetrieveVendorMetaData.get_vendor_data()
+    return Response(json_util.dumps(vendor_data), status=200, mimetype="application/json")
+
+
+@vendor_endpoint.route("/distance", methods=["GET"])
+def get_vendors_with_distance():
     units = str(request.args.get("units")).lower()
     user_lat = request.args.get("user_lat")
     user_lng = request.args.get("user_lng")
     vendor_lat = request.args.get("vendor_lat")
     vendor_lng = request.args.get("vendor_lng")
-
-    vendor_data = RetrieveVendorMetaData.get_vendor_data()
 
     if units is None:
         raise AttributeNotPresent("Null units", 400)
@@ -29,33 +33,9 @@ def get_vendor_data():
     if vendor_lat is None or vendor_lng is None:
         raise AttributeNotPresent("Vendor location is null", 400)
 
-    for vendor in vendor_data:
-        distance_in_km = Distance.get_distance_between_points_in_km(user_lat, user_lng, vendor_lat, vendor_lng)
-        distance = Distance.get_requested_distance(distance_in_km, units)
-        vendor["distance"] = distance
-
-    return Response(json_util.dumps(vendor_data), status=200, mimetype="application/json")
-
-
-@vendor_endpoint.route("/distance", methods=["GET"])
-def get_distance_to_vendor():
-    units = str(request.args.get("units")).lower()
-    user_lat = request.args.get("user_lat")
-    user_lng = request.args.get("user_lng")
-    vendor_lat = request.args.get("vendor_lat")
-    vendor_lng = request.args.get("vendor_lng")
-
-    accepted_units = ["km", "mi"]
-    if units not in accepted_units:
-        raise AttributeNotPresent(units + " isn't a valid unit", 400)
-
     distance_in_km = Distance.get_distance_between_points_in_km(user_lat, user_lng, vendor_lat, vendor_lng)
     distance = Distance.get_requested_distance(distance_in_km, units)
-
-    payload = {
-        "distance": distance,
-        "units": units
-    }
+    payload = {"distance": distance, "units": units}
 
     return Response(json_util.dumps(payload), status=200, mimetype="application/json")
 
